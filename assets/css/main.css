@@ -1132,15 +1132,22 @@ section,
 
 .contact .php-email-form button[type=submit] {
   color: var(--contrast-color);
-  background: var(--accent-color);
+  background: linear-gradient(135deg, var(--accent-color) 0%, #0ea5e9 100%);
   border: 0;
-  padding: 10px 30px;
-  transition: 0.4s;
+  padding: 12px 35px;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   border-radius: 50px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
 .contact .php-email-form button[type=submit]:hover {
-  background: color-mix(in srgb, var(--accent-color), transparent 25%);
+  background: linear-gradient(135deg, #0ea5e9 0%, var(--accent-color) 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(20, 157, 221, 0.4);
 }
 
 /*--------------------------------------------------------------
@@ -1274,4 +1281,558 @@ section,
 --------------------------------------------------------------*/
 .starter-section {
   /* Add your styles here */
+}
+
+/*--------------------------------------------------------------
+# Modern Enhancements - Dark Mode & Advanced Effects
+--------------------------------------------------------------*/
+
+/* Dark Mode Toggle Button */
+.theme-toggle-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-color);
+  background: var(--surface-color);
+  color: var(--accent-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(20, 157, 221, 0.2);
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.1) rotate(20deg);
+  box-shadow: 0 6px 25px rgba(20, 157, 221, 0.4);
+  background: var(--accent-color);
+  color: var(--surface-color);
+}
+
+/* Dark Mode Theme */
+body.dark-theme {
+  --background-color: #0a0e27;
+  --default-color: #e4e4e7;
+  --heading-color: #ffffff;
+  --surface-color: #1a1f3a;
+  --contrast-color: #ffffff;
+}
+
+body.dark-theme .dark-background {
+  --background-color: #0f1419;
+  --surface-color: #1a1f3a;
+}
+
+body.dark-theme .light-background {
+  --background-color: #141929;
+  --surface-color: #1a1f3a;
+}
+
+/* Smooth Page Transitions */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Enhanced Hover Effects for Cards */
+.portfolio-content,
+.service-item,
+.resume-item,
+.stats-item {
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ensure portfolio items remain visible during filtering */
+.portfolio-item {
+  opacity: 1 !important;
+}
+
+.portfolio-content:hover,
+.service-item:hover,
+.resume-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(20, 157, 221, 0.15);
+}
+
+/* Gradient Overlay on Images */
+.portfolio-content img {
+  transition: transform 0.4s ease;
+  border-radius: 12px;
+}
+
+.portfolio-content:hover img {
+  transform: scale(1.05);
+}
+
+.portfolio-info {
+  background: linear-gradient(135deg, rgba(20, 157, 221, 0.9) 0%, rgba(20, 157, 221, 0.7) 100%);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+}
+
+/* Modern Button Styles */
+button,
+a.btn,
+.service-item .stretched-link::after {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+button:hover,
+a.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(20, 157, 221, 0.3);
+}
+
+/* Scroll Progress Bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-color), rgba(20, 157, 221, 0.5));
+  width: 0%;
+  z-index: 10000;
+  transition: width 0.2s ease;
+  box-shadow: 0 2px 10px rgba(20, 157, 221, 0.3);
+}
+
+/* Enhanced Form Elements */
+.form-control,
+textarea.form-control {
+  border-radius: 8px;
+  border: 2px solid color-mix(in srgb, var(--accent-color), transparent 80%);
+  background: var(--surface-color);
+  color: var(--default-color);
+  transition: all 0.3s ease;
+  padding: 12px 16px;
+  font-size: 15px;
+}
+
+.form-control:focus,
+textarea.form-control:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 4px rgba(20, 157, 221, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Enhanced Progress Bars */
+.progress {
+  background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
+  border-radius: 10px;
+  height: 8px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar {
+  background: linear-gradient(90deg, var(--accent-color) 0%, #06b6d4 100%);
+  border-radius: 10px;
+  transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 2px 8px rgba(20, 157, 221, 0.3);
+}
+
+/* Floating Animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.profile-img img {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Glassmorphism Effect for Cards */
+.stats-item {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 30px 25px;
+}
+
+body.dark-theme .stats-item {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Smooth Section Transitions */
+section {
+  scroll-margin-top: 100px;
+}
+
+/* Enhanced Navigation Highlighting */
+.navmenu a.active {
+  color: var(--accent-color);
+  font-weight: 600;
+  position: relative;
+}
+
+.navmenu a.active::before {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent-color);
+  border-radius: 1px;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    width: 0;
+    left: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Ripple Effect on Click */
+button,
+.service-item .stretched-link {
+  position: relative;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+button:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Enhanced Icon Styling */
+.icon {
+  font-size: 36px;
+  color: var(--accent-color);
+  transition: all 0.3s ease;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 157, 221, 0.1);
+  border-radius: 12px;
+  margin-right: 20px;
+}
+
+.service-item:hover .icon {
+  transform: scale(1.2) rotate(10deg);
+  background: rgba(20, 157, 221, 0.2);
+  color: var(--accent-color);
+}
+
+/* Smooth Link Transitions */
+a {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent-color);
+  transition: width 0.3s ease;
+}
+
+a:hover::after {
+  width: 100%;
+}
+
+/* Portfolio Filter Button Enhancement */
+.portfolio-filters li {
+  border-radius: 25px;
+  padding: 8px 20px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.portfolio-filters li.filter-active {
+  background: var(--accent-color);
+  color: white;
+  border-color: var(--accent-color);
+  box-shadow: 0 8px 25px rgba(20, 157, 221, 0.3);
+}
+
+.portfolio-filters li:hover {
+  border-color: var(--accent-color);
+  transform: translateY(-3px);
+}
+
+/* Heading Underline Animation */
+h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--accent-color);
+  border-radius: 2px;
+  margin: 10px 0 0 0;
+  animation: expandWidth 0.6s ease;
+}
+
+@keyframes expandWidth {
+  from {
+    width: 0;
+  }
+  to {
+    width: 60px;
+  }
+}
+
+/* Smooth Footer Links */
+footer a:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+  .theme-toggle-btn {
+    width: 45px;
+    height: 45px;
+    top: 15px;
+    right: 15px;
+    font-size: 18px;
+  }
+
+  .profile-img {
+    animation: none;
+  }
+
+  .portfolio-filters li {
+    padding: 6px 14px;
+    font-size: 13px;
+  }
+}
+
+/*--------------------------------------------------------------
+# Achievements Section
+--------------------------------------------------------------*/
+.achievements .achievement-item {
+  background: var(--surface-color);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.achievements .achievement-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(20, 157, 221, 0.2);
+}
+
+.achievements .achievement-item .icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--accent-color), #0ea8d4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-size: 28px;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.achievements .achievement-item:hover .icon {
+  transform: rotate(360deg) scale(1.1);
+}
+
+.achievements .achievement-item h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: var(--heading-color);
+}
+
+.achievements .achievement-item p {
+  color: var(--default-color);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/*--------------------------------------------------------------
+# FAQ Section
+--------------------------------------------------------------*/
+.faq .faq-container {
+  margin-top: 15px;
+}
+
+.faq .faq-container .faq-item {
+  position: relative;
+  padding: 20px;
+  margin-bottom: 20px;
+  background: var(--surface-color);
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.faq .faq-container .faq-item:hover {
+  box-shadow: 0 8px 25px rgba(20, 157, 221, 0.15);
+}
+
+.faq .faq-item h3 {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  margin: 0 30px 0 0;
+  transition: 0.3s;
+  cursor: pointer;
+  color: var(--heading-color);
+}
+
+.faq .faq-item h3:hover {
+  color: var(--accent-color);
+}
+
+.faq .faq-item .faq-content {
+  display: none;
+  padding: 15px 0 0 0;
+}
+
+.faq .faq-item .faq-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 16px;
+  line-height: 0;
+  transition: 0.3s;
+  cursor: pointer;
+  color: var(--accent-color);
+}
+
+.faq .faq-item .faq-toggle:hover {
+  color: #0ea8d4;
+}
+
+.faq .faq-active h3 {
+  color: var(--accent-color);
+}
+
+.faq .faq-active .faq-content {
+  display: block;
+  animation: fadeInDown 0.3s ease;
+}
+
+.faq .faq-active .faq-toggle {
+  transform: rotate(90deg);
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*--------------------------------------------------------------
+# Enhanced Footer
+--------------------------------------------------------------*/
+.footer {
+  padding: 40px 0;
+  text-align: center;
+}
+
+.footer h3 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--heading-color);
+}
+
+.footer p {
+  font-size: 15px;
+  font-style: italic;
+  margin-bottom: 20px;
+  color: var(--default-color);
+}
+
+.footer .social-links {
+  margin: 0 auto 30px auto;
+}
+
+.footer .social-links a {
+  font-size: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  line-height: 1;
+  margin: 0 4px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  transition: 0.3s;
+}
+
+.footer .social-links a:hover {
+  background: #0ea8d4;
+  transform: translateY(-5px);
+}
+
+.footer .copyright {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(var(--default-color-rgb), 0.1);
+}
+
+.footer .credits {
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--default-color);
+}
+
+.footer .credits i {
+  color: #e74c3c;
+  animation: heartbeat 1.5s ease infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
 }

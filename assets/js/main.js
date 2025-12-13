@@ -10,6 +10,336 @@
   "use strict";
 
   /**
+   * Dark Mode / Light Mode Toggle
+   */
+  const initThemeToggle = () => {
+    const toggleBtn = document.querySelector('.theme-toggle-btn');
+    const htmlElement = document.documentElement;
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark-theme');
+      if (toggleBtn) toggleBtn.innerHTML = '<i class="bi bi-sun"></i>';
+    }
+    
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        document.body.classList.toggle('dark-theme');
+        const isDark = document.body.classList.contains('dark-theme');
+        toggleBtn.innerHTML = isDark ? '<i class="bi bi-sun"></i>' : '<i class="bi bi-moon"></i>';
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      });
+    }
+  };
+
+  /**
+   * Add Scroll Progress Bar
+   */
+  const initScrollProgressBar = () => {
+    let scrollProgress = document.querySelector('.scroll-progress');
+    if (!scrollProgress) {
+      scrollProgress = document.createElement('div');
+      scrollProgress.className = 'scroll-progress';
+      document.body.appendChild(scrollProgress);
+    }
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      scrollProgress.style.width = scrollPercent + '%';
+    });
+  };
+
+  /**
+   * Smooth Scroll to Section
+   */
+  const initSmoothScroll = () => {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  };
+
+  /**
+   * Parallax Effect on Hero Section
+   */
+  const initParallaxEffect = () => {
+    const heroSection = document.querySelector('#hero');
+    if (!heroSection) return;
+
+    window.addEventListener('scroll', () => {
+      const scrollPosition = window.scrollY;
+      const heroImg = heroSection.querySelector('img');
+      if (heroImg) {
+        heroImg.style.transform = `translateY(${scrollPosition * 0.5}px)`;
+      }
+    });
+  };
+
+  /**
+   * Number Counter Animation
+   */
+  const initCounterAnimation = () => {
+    const counters = document.querySelectorAll('[data-purecounter-end]');
+    
+    const observerOptions = {
+      threshold: 0.5,
+      rootMargin: '0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.dataset.animated) {
+          const element = entry.target;
+          const target = parseInt(element.dataset.purecounterEnd);
+          let current = 0;
+          const increment = target / 30;
+          
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              element.textContent = target;
+              clearInterval(timer);
+            } else {
+              element.textContent = Math.ceil(current);
+            }
+          }, 30);
+          
+          element.dataset.animated = 'true';
+        }
+      });
+    }, observerOptions);
+
+    counters.forEach(counter => observer.observe(counter));
+  };
+
+  /**
+   * Enhanced Skill Progress Animation
+   */
+  const initEnhancedSkillAnimation = () => {
+    const skillsSection = document.querySelector('.skills-animation');
+    if (!skillsSection) return;
+
+    const observerOptions = {
+      threshold: 0.3,
+      rootMargin: '0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.dataset.skillsAnimated) {
+          const progressBars = entry.target.querySelectorAll('.progress-bar');
+          progressBars.forEach((bar, index) => {
+            const width = bar.getAttribute('aria-valuenow');
+            setTimeout(() => {
+              bar.style.width = width + '%';
+            }, index * 100);
+          });
+          entry.target.dataset.skillsAnimated = 'true';
+        }
+      });
+    }, observerOptions);
+
+    observer.observe(skillsSection);
+  };
+
+  /**
+   * Intersection Observer for Fade-in Effects
+   */
+  const initFadeInOnScroll = () => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('[data-aos]').forEach(element => {
+      element.style.opacity = '0';
+      element.style.transform = 'translateY(20px)';
+      element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(element);
+    });
+  };
+
+  /**
+   * Add Scroll Reveal for Stats
+   */
+  const initStatsReveal = () => {
+    const statsItems = document.querySelectorAll('.stats-item');
+    
+    const observerOptions = {
+      threshold: 0.5,
+      rootMargin: '0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting && !entry.target.dataset.revealed) {
+          setTimeout(() => {
+            entry.target.style.animation = 'slideUp 0.6s ease forwards';
+          }, index * 100);
+          entry.target.dataset.revealed = 'true';
+        }
+      });
+    }, observerOptions);
+
+    statsItems.forEach(item => observer.observe(item));
+  };
+
+  /**
+   * Create Slide Up Animation
+   */
+  const createAnimations = () => {
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      @keyframes slideInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  };
+
+  /**
+   * Enhance Portfolio Items with Stagger Animation
+   */
+  const initPortfolioStagger = () => {
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+    
+    // Only apply initial animation on page load, don't interfere with Isotope filtering
+    portfolioItems.forEach((item, index) => {
+      if (!item.dataset.initialAnimated) {
+        item.style.animation = `slideUp 0.6s ease forwards`;
+        item.style.animationDelay = `${index * 0.1}s`;
+        item.dataset.initialAnimated = 'true';
+        
+        // Remove animation after it completes to not interfere with Isotope
+        setTimeout(() => {
+          item.style.animation = '';
+          item.style.animationDelay = '';
+        }, 600 + (index * 100));
+      }
+    });
+  };
+
+  /**
+   * FAQ Toggle Functionality
+   */
+  const initFaqToggle = () => {
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach((item) => {
+      const question = item.querySelector('h3');
+      const toggle = item.querySelector('.faq-toggle');
+
+      const clickHandler = () => {
+        const isActive = item.classList.contains('faq-active');
+        
+        // Close all other FAQ items
+        faqItems.forEach((otherItem) => {
+          otherItem.classList.remove('faq-active');
+        });
+
+        // Toggle current item
+        if (!isActive) {
+          item.classList.add('faq-active');
+        }
+      };
+
+      if (question) question.addEventListener('click', clickHandler);
+      if (toggle) toggle.addEventListener('click', clickHandler);
+    });
+  };
+
+  /**
+   * Tooltip on Hover for Portfolio Items - Removed to prevent conflicts
+   * CSS handles the hover effects properly
+   */
+  const initPortfolioTooltip = () => {
+    // CSS handles hover effects - no JavaScript needed
+    // This prevents conflicts with Isotope filtering
+  };
+
+  /**
+   * Add Active State to Navigation on Scroll
+   */
+  const initNavHighlight = () => {
+    const navLinks = document.querySelectorAll('.navmenu a[href^="#"]');
+    
+    window.addEventListener('scroll', () => {
+      let current = '';
+      
+      document.querySelectorAll('section[id]').forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (scrollY >= sectionTop - 200) {
+          current = section.getAttribute('id');
+        }
+      });
+      
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').slice(1) === current) {
+          link.classList.add('active');
+        }
+      });
+    });
+  };
+
+  /**
+   * Initialize Theme Toggle Button
+   */
+  const createThemeToggleButton = () => {
+    const existingBtn = document.querySelector('.theme-toggle-btn');
+    if (!existingBtn) {
+      const toggleBtn = document.createElement('button');
+      toggleBtn.className = 'theme-toggle-btn';
+      toggleBtn.innerHTML = '<i class="bi bi-moon"></i>';
+      toggleBtn.title = 'Toggle Dark Mode';
+      document.body.appendChild(toggleBtn);
+    }
+  };
+
+  /**
    * Header toggle
    */
   const headerToggleBtn = document.querySelector('.header-toggle');
@@ -156,6 +486,7 @@
       filters.addEventListener('click', function() {
         isotopeItem.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
         this.classList.add('filter-active');
+        
         initIsotope.arrange({
           filter: this.getAttribute('data-filter')
         });
@@ -225,5 +556,29 @@
   }
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
+
+  /**
+   * Initialize all new features on load
+   */
+  window.addEventListener('load', () => {
+    createAnimations();
+    createThemeToggleButton();
+    initThemeToggle();
+    initScrollProgressBar();
+    initSmoothScroll();
+    initParallaxEffect();
+    initCounterAnimation();
+    initEnhancedSkillAnimation();
+    initFadeInOnScroll();
+    initStatsReveal();
+    initPortfolioTooltip();
+    initNavHighlight();
+    initFaqToggle();
+    
+    // Delay portfolio stagger to run after Isotope is fully initialized
+    setTimeout(() => {
+      initPortfolioStagger();
+    }, 500);
+  });
 
 })();
