@@ -163,7 +163,6 @@ h6 {
   width: 120px;
   border: 10px solid color-mix(in srgb, var(--default-color), transparent 85%);
 }
-
 .header .logo {
   line-height: 1;
   margin-bottom: 15px;
@@ -617,10 +616,13 @@ section,
     font-size: 20px;
   }
 }
-
 /*--------------------------------------------------------------
 # About Section
 --------------------------------------------------------------*/
+.about img {
+  margin-top: 60px;
+}
+
 .about .content h2 {
   font-weight: 700;
   font-size: 24px;
