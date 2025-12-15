@@ -392,13 +392,13 @@ h6 {
   overflow: hidden;
   background: var(--background-color);
   transition: all 0.6s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #preloader:before {
   content: "";
-  position: fixed;
-  top: calc(50% - 30px);
-  left: calc(50% - 30px);
   border: 6px solid #ffffff;
   border-color: var(--accent-color) transparent var(--accent-color) transparent;
   border-radius: 50%;
@@ -1639,6 +1639,171 @@ footer a:hover {
     padding: 6px 14px;
     font-size: 13px;
   }
+
+  /* Mobile Hero Enhancements */
+  .hero h2 {
+    font-size: 28px !important;
+    line-height: 1.2;
+  }
+
+  .hero p {
+    font-size: 18px !important;
+  }
+
+  /* Mobile Stats */
+  .stats .stats-item {
+    padding: 20px;
+  }
+
+  .stats .stats-item i {
+    font-size: 32px;
+  }
+
+  .stats .stats-item span {
+    font-size: 36px;
+  }
+
+  /* Mobile Skills */
+  .skills .progress {
+    height: 50px;
+  }
+
+  .skills .progress .skill {
+    font-size: 13px;
+  }
+
+  /* Mobile Resume */
+  .resume .resume-title {
+    font-size: 22px;
+  }
+
+  .resume .resume-item h4 {
+    font-size: 16px;
+  }
+
+  /* Mobile Portfolio */
+  .portfolio .portfolio-filters {
+    margin-bottom: 20px;
+  }
+
+  .portfolio .portfolio-item {
+    margin-bottom: 20px;
+  }
+
+  /* Mobile Services */
+  .services .service-item {
+    padding: 25px;
+  }
+
+  /* Mobile Achievements */
+  .achievements .achievement-item {
+    padding: 25px;
+    margin-bottom: 20px;
+  }
+
+  .achievements .achievement-item .icon {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+
+  .achievements .achievement-item h3 {
+    font-size: 18px;
+  }
+
+  /* Mobile FAQ */
+  .faq .faq-item {
+    padding: 15px;
+  }
+
+  .faq .faq-item h3 {
+    font-size: 16px;
+    margin-right: 25px;
+  }
+
+  /* Mobile Contact */
+  .contact .info-item {
+    padding: 20px;
+  }
+
+  /* Mobile Footer */
+  .footer h3 {
+    font-size: 24px;
+  }
+
+  .footer .social-links a {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+}
+
+/* Tablet Optimization (768px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero h2 {
+    font-size: 36px;
+  }
+
+  .hero p {
+    font-size: 22px;
+  }
+
+  .stats .stats-item {
+    padding: 25px;
+  }
+
+  .portfolio .col-lg-4 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .services .col-lg-4 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .achievements .col-lg-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/* Small Mobile (max-width: 576px) */
+@media (max-width: 576px) {
+  .scroll-progress-bar {
+    height: 3px;
+  }
+
+  .section-title h2 {
+    font-size: 28px;
+  }
+
+  .section-title p {
+    font-size: 14px;
+  }
+
+  .stats .stats-item {
+    margin-bottom: 15px;
+  }
+
+  .portfolio-filters {
+    justify-content: center !important;
+  }
+
+  .portfolio-filters li {
+    padding: 5px 10px;
+    font-size: 12px;
+    margin: 3px;
+  }
+
+  .contact iframe {
+    height: 250px !important;
+  }
+
+  .faq .faq-item h3 {
+    font-size: 15px;
+    line-height: 1.4;
+  }
 }
 
 /*--------------------------------------------------------------
@@ -1835,4 +2000,127 @@ footer a:hover {
 @keyframes heartbeat {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.2); }
+}
+
+/*--------------------------------------------------------------
+# Mobile Touch Enhancements
+--------------------------------------------------------------*/
+.mobile-device .portfolio-item.touch-active .portfolio-info {
+  opacity: 1 !important;
+}
+
+.mobile-device .portfolio-item.touch-active img {
+  transform: scale(1.05);
+}
+
+/* Smooth scrolling for mobile */
+html.mobile-device {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Better tap targets for mobile */
+@media (max-width: 768px) {
+  a, button, .portfolio-filters li {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .portfolio-filters li {
+    padding: 10px 16px;
+  }
+
+  /* Prevent text selection on touch */
+  .portfolio-item, .service-item, .achievement-item, .faq-item {
+    -webkit-tap-highlight-color: rgba(20, 157, 221, 0.1);
+    -webkit-touch-callout: none;
+    user-select: none;
+  }
+
+  /* Mobile-friendly spacing */
+  .section {
+    padding: 40px 0;
+  }
+
+  /* Improve readability on small screens */
+  body {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  p {
+    margin-bottom: 15px;
+  }
+
+  /* Mobile navigation improvements */
+  .navmenu {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .navmenu a {
+    padding: 15px 25px;
+    font-size: 16px;
+  }
+
+  /* Mobile button enhancements */
+  button, .btn {
+    padding: 12px 24px;
+    font-size: 15px;
+    border-radius: 8px;
+  }
+
+  /* Touch-friendly social links */
+  .social-links a {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+    margin: 0 6px;
+  }
+
+  /* Mobile header adjustments */
+  .header {
+    width: 280px;
+  }
+
+  .header .profile-img {
+    width: 100px;
+    height: 100px;
+    margin: 15px auto;
+  }
+
+  .header .sitename {
+    font-size: 24px;
+  }
+}
+
+/* Landscape mobile optimization */
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero {
+    min-height: 60vh;
+  }
+
+  .header .profile-img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .navmenu a {
+    padding: 10px 20px;
+  }
+
+  .section {
+    padding: 30px 0;
+  }
+}
+
+/* High DPI screens (Retina) */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .portfolio-content img,
+  .profile-img img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
 }

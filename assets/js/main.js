@@ -574,11 +574,75 @@
     initPortfolioTooltip();
     initNavHighlight();
     initFaqToggle();
+    initMobileEnhancements();
     
     // Delay portfolio stagger to run after Isotope is fully initialized
     setTimeout(() => {
       initPortfolioStagger();
     }, 500);
   });
+
+  /**
+   * Mobile-Specific Enhancements
+   */
+  function initMobileEnhancements() {
+    // Detect mobile device
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+      // Add mobile class to body
+      document.body.classList.add('mobile-device');
+      
+      // Improve touch scrolling
+      document.body.style.webkitOverflowScrolling = 'touch';
+      
+      // Remove hover effects on mobile (use tap instead)
+      document.querySelectorAll('.portfolio-item').forEach(item => {
+        item.addEventListener('touchstart', function() {
+          this.classList.add('touch-active');
+        });
+        
+        item.addEventListener('touchend', function() {
+          setTimeout(() => {
+            this.classList.remove('touch-active');
+          }, 300);
+        });
+      });
+      
+      // Optimize animations for mobile performance
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduceMotion) {
+        document.documentElement.style.setProperty('--animation-duration', '0s');
+      }
+      
+      // Mobile menu auto-close on link click
+      const navLinks = document.querySelectorAll('.navmenu a');
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          const header = document.getElementById('header');
+          if (header && header.classList.contains('header-show')) {
+            header.classList.remove('header-show');
+          }
+        });
+      });
+    }
+    
+    // Handle orientation change
+    window.addEventListener('orientationchange', function() {
+      setTimeout(() => {
+        window.scrollTo(0, window.scrollY + 1);
+        window.scrollTo(0, window.scrollY - 1);
+      }, 100);
+    });
+    
+    // Improve viewport height on mobile browsers
+    const setVH = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+    
+    setVH();
+    window.addEventListener('resize', setVH);
+  }
 
 })();
