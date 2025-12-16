@@ -10,6 +10,71 @@
   "use strict";
 
   /**
+   * Visitor Counter - Tracks unique visits
+   */
+  function initVisitorCounter() {
+    const counterElement = document.getElementById('visitorCount');
+    if (!counterElement) return;
+
+    // Get stored visitor count
+    let visitorCount = localStorage.getItem('portfolioVisitorCount');
+    
+    if (!visitorCount) {
+      // First time visitor
+      visitorCount = 1;
+    } else {
+      // Increment count
+      visitorCount = parseInt(visitorCount) + 1;
+    }
+    
+    // Store updated count
+    localStorage.setItem('portfolioVisitorCount', visitorCount);
+    
+    // Animate counter from 0 to current count
+    animateCounter(counterElement, visitorCount);
+    
+    // Track unique session (for more accurate analytics)
+    trackSession();
+  }
+
+  function animateCounter(element, targetCount) {
+    let currentCount = 0;
+    const increment = Math.ceil(targetCount / 50);
+    const duration = 1500; // 1.5 seconds
+    const stepTime = duration / (targetCount / increment);
+    
+    const counter = setInterval(() => {
+      currentCount += increment;
+      if (currentCount >= targetCount) {
+        element.textContent = targetCount.toLocaleString();
+        clearInterval(counter);
+      } else {
+        element.textContent = currentCount.toLocaleString();
+      }
+    }, stepTime);
+  }
+
+  function trackSession() {
+    // Track unique sessions (resets after browser close)
+    const sessionKey = 'portfolioSession';
+    const currentSession = sessionStorage.getItem(sessionKey);
+    
+    if (!currentSession) {
+      // New session - you can send this to your analytics
+      sessionStorage.setItem(sessionKey, Date.now());
+      console.log('📊 New visitor session started');
+      
+      // If you want to track this in Google Analytics
+      if (typeof gtag === 'function') {
+        gtag('event', 'page_view', {
+          'page_title': document.title,
+          'page_location': window.location.href
+        });
+      }
+    }
+  }
+
+  /**
    * Dark Mode / Light Mode Toggle
    */
   const initThemeToggle = () => {
@@ -561,6 +626,7 @@
    * Initialize all new features on load
    */
   window.addEventListener('load', () => {
+    initVisitorCounter();
     createAnimations();
     createThemeToggleButton();
     initThemeToggle();

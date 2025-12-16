@@ -1997,6 +1997,28 @@ footer a:hover {
   animation: heartbeat 1.5s ease infinite;
 }
 
+.footer .visitor-counter {
+  margin-top: 15px;
+  font-size: 14px;
+  color: var(--default-color);
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.footer .visitor-counter i {
+  color: var(--accent-color);
+  font-size: 16px;
+  animation: none;
+}
+
+.footer .visitor-counter span {
+  font-weight: 600;
+  color: var(--accent-color);
+}
+
 @keyframes heartbeat {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.2); }

@@ -35,6 +35,16 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
+  <!-- Google Analytics -->
+  <!-- Replace 'G-XXXXXXXXXX' with your actual Google Analytics Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NN6TX69HTN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-NN6TX69HTN'); // Replace with your Measurement ID
+  </script>
+
   <!-- =======================================================
   * Template Name: iPortfolio
   * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
@@ -943,6 +953,10 @@ Relevant areas of study include web development, game design, UI/UX, and compute
         </div>
         <div class="credits">
           Built with <i class="bi bi-heart-fill"></i> and lots of coffee
+        </div>
+        <!-- Visitor Counter -->
+        <div class="visitor-counter" id="visitorCounter">
+          <i class="bi bi-eye-fill"></i> <span id="visitorCount">0</span> visits
         </div>
       </div>
     </div>
