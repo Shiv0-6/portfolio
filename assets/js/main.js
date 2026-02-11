@@ -530,82 +530,38 @@
   });
 
   /**
-   * Init isotope layout and filters
+   * Simple portfolio filters (no Isotope)
    */
   document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
-    let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
-    let filter = isotopeItem.getAttribute('data-default-filter') ?? '*';
-    let sort = isotopeItem.getAttribute('data-sort') ?? 'original-order';
-
     const filterItems = Array.from(isotopeItem.querySelectorAll('.isotope-filters li'));
-    const isotopeItems = Array.from(isotopeItem.querySelectorAll('.isotope-container .isotope-item'));
+    const gridItems = Array.from(isotopeItem.querySelectorAll('.isotope-container .isotope-item'));
+    const defaultFilter = isotopeItem.getAttribute('data-default-filter') ?? '*';
 
-    const filterHasMatches = function(filterValue) {
-      if (filterValue === '*') {
-        return isotopeItems.length > 0;
-      }
-
-      return isotopeItems.some(function(item) {
-        return item.matches(filterValue);
-      });
-    };
-
-    const applyFallbackFilter = function(filterValue) {
-      isotopeItems.forEach(function(item) {
+    const applyFilter = function(filterValue) {
+      gridItems.forEach(function(item) {
         const matches = filterValue === '*' ? true : item.matches(filterValue);
         item.classList.toggle('portfolio-filter-hidden', !matches);
       });
     };
 
+    applyFilter(defaultFilter);
+
     filterItems.forEach(function(filterItem) {
-      const filterValue = filterItem.getAttribute('data-filter') ?? '*';
-      if (!filterHasMatches(filterValue)) {
-        filterItem.style.display = 'none';
-      }
-    });
-
-    const activeFilter = isotopeItem.querySelector('.isotope-filters .filter-active');
-    if (activeFilter && activeFilter.style.display === 'none') {
-      if (filterItems.length > 0) {
-        filterItems.forEach(function(item) {
-          item.classList.remove('filter-active');
-        });
-        const allFilter = isotopeItem.querySelector('.isotope-filters [data-filter="*"]');
-        if (allFilter) {
-          allFilter.classList.add('filter-active');
+      filterItem.addEventListener('click', function() {
+        const activeItem = isotopeItem.querySelector('.isotope-filters .filter-active');
+        if (activeItem) {
+          activeItem.classList.remove('filter-active');
         }
-      }
-    }
+        filterItem.classList.add('filter-active');
 
-    let initIsotope;
-    imagesLoaded(isotopeItem.querySelector('.isotope-container'), function() {
-      initIsotope = new Isotope(isotopeItem.querySelector('.isotope-container'), {
-        itemSelector: '.isotope-item',
-        layoutMode: layout,
-        filter: filter,
-        sortBy: sort
-      });
-      applyFallbackFilter(filter);
-    });
+        const filterValue = filterItem.getAttribute('data-filter') ?? '*';
+        applyFilter(filterValue);
 
-    isotopeItem.querySelectorAll('.isotope-filters li').forEach(function(filters) {
-      filters.addEventListener('click', function() {
-        isotopeItem.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
-        this.classList.add('filter-active');
-
-        const filterValue = this.getAttribute('data-filter') ?? '*';
-        if (initIsotope) {
-          initIsotope.arrange({
-            filter: filterValue
-          });
-        }
-        applyFallbackFilter(filterValue);
         if (typeof aosInit === 'function') {
           aosInit();
         }
       }, false);
     });
-
   });
 
   /**
