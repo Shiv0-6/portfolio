@@ -906,6 +906,10 @@ section,
   min-height: 400px;
 }
 
+.portfolio .portfolio-filter-hidden {
+  display: none !important;
+}
+
 /*--------------------------------------------------------------
 # Services Section
 --------------------------------------------------------------*/
