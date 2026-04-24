@@ -19,37 +19,50 @@
 
 /* Global Colors */
 :root { 
+  --accent-color: #00f2fe;
+  --accent-secondary: #4facfe;
+  --contrast-color: #ffffff;
+}
+
+body.dark-theme {
   --background-color: #050505;
   --default-color: #e0e0e0;
   --heading-color: #ffffff;
-  --accent-color: #00f2fe;
-  --accent-secondary: #4facfe;
   --surface-color: rgba(255, 255, 255, 0.05);
-  --contrast-color: #ffffff;
   --glass-border: rgba(255, 255, 255, 0.1);
-}
-
-/* Nav Menu Colors */
-:root {
   --nav-color: #a8a9b4;
   --nav-hover-color: #00f2fe;
-  --nav-mobile-background-color: #050505;
   --nav-dropdown-background-color: #0a0a0a;
   --nav-dropdown-color: #a8a9b4;
   --nav-dropdown-hover-color: #00f2fe;
+  --overlay-color: rgba(0, 0, 0, 0.6);
+}
+
+body.light-theme {
+  --background-color: #f8f9fa;
+  --default-color: #333333;
+  --heading-color: #111111;
+  --surface-color: rgba(0, 0, 0, 0.05);
+  --glass-border: rgba(0, 0, 0, 0.1);
+  --nav-color: #555555;
+  --nav-hover-color: #149ddd;
+  --nav-dropdown-background-color: #ffffff;
+  --nav-dropdown-color: #555555;
+  --nav-dropdown-hover-color: #149ddd;
+  --overlay-color: rgba(255, 255, 255, 0.6);
 }
 
 .light-background {
-  --background-color: #0a0a0a;
-  --surface-color: rgba(255, 255, 255, 0.03);
+  --background-color: var(--background-color);
+  --surface-color: var(--surface-color);
 }
 
 .dark-background {
-  --background-color: #050505;
-  --default-color: #ffffff;
-  --heading-color: #ffffff;
-  --surface-color: rgba(255, 255, 255, 0.05);
-  --contrast-color: #ffffff;
+  --background-color: var(--background-color);
+  --default-color: var(--default-color);
+  --heading-color: var(--heading-color);
+  --surface-color: var(--surface-color);
+  --contrast-color: var(--contrast-color);
 }
 
 /* Smooth scroll */
@@ -219,6 +232,29 @@ h6 {
   margin: 0;
   font-weight: 700;
   color: var(--heading-color);
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  background: var(--surface-color);
+  border: 1px solid var(--glass-border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 1000;
+}
+
+.theme-toggle:hover {
+  background: var(--accent-color);
+  color: #050505;
+  transform: rotate(20deg);
 }
 
 .header .social-links {
@@ -949,7 +985,7 @@ section,
   inset: 10px;
   z-index: 3;
   transition: all ease-in-out 0.3s;
-  background: rgba(0, 0, 0, 0.4);
+  background: var(--overlay-color);
   backdrop-filter: blur(10px);
   border: 1px solid var(--glass-border);
   border-radius: 12px;
