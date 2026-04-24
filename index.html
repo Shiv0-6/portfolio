@@ -1059,37 +1059,6 @@ Relevant areas of study include web development, game design, UI/UX, and compute
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 
-  <script>
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = document.getElementById('theme-icon');
-    const body = document.body;
-
-    // Check for saved theme
-    const savedTheme = localStorage.getItem('portfolio-theme') || 'dark-theme';
-    body.classList.add(savedTheme);
-    updateIcon(savedTheme);
-
-    themeToggle.addEventListener('click', () => {
-      if (body.classList.contains('dark-theme')) {
-        body.classList.replace('dark-theme', 'light-theme');
-        localStorage.setItem('portfolio-theme', 'light-theme');
-        updateIcon('light-theme');
-      } else {
-        body.classList.replace('light-theme', 'dark-theme');
-        localStorage.setItem('portfolio-theme', 'dark-theme');
-        updateIcon('dark-theme');
-      }
-    });
-
-    function updateIcon(theme) {
-      if (theme === 'dark-theme') {
-        themeIcon.classList.replace('bi-sun', 'bi-moon-stars');
-      } else {
-        themeIcon.classList.replace('bi-moon-stars', 'bi-sun');
-      }
-    }
-  </script>
-
 </body>
 
 </html>

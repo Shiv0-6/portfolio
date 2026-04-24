@@ -78,22 +78,33 @@
    * Dark Mode / Light Mode Toggle
    */
   const initThemeToggle = () => {
-    const toggleBtn = document.querySelector('.theme-toggle-btn');
-    const htmlElement = document.documentElement;
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    const toggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const body = document.body;
     
-    if (savedTheme === 'dark') {
-      document.body.classList.add('dark-theme');
-      if (toggleBtn) toggleBtn.innerHTML = '<i class="bi bi-sun"></i>';
+    // Check for saved theme
+    const savedTheme = localStorage.getItem('portfolio-theme') || 'dark-theme';
+    body.classList.add(savedTheme);
+    
+    if (themeIcon) {
+      if (savedTheme === 'dark-theme') {
+        themeIcon.classList.replace('bi-sun', 'bi-moon-stars');
+      } else {
+        themeIcon.classList.replace('bi-moon-stars', 'bi-sun');
+      }
     }
     
     if (toggleBtn) {
-      toggleBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        document.body.classList.toggle('dark-theme');
-        const isDark = document.body.classList.contains('dark-theme');
-        toggleBtn.innerHTML = isDark ? '<i class="bi bi-sun"></i>' : '<i class="bi bi-moon"></i>';
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      toggleBtn.addEventListener('click', () => {
+        if (body.classList.contains('dark-theme')) {
+          body.classList.replace('dark-theme', 'light-theme');
+          localStorage.setItem('portfolio-theme', 'light-theme');
+          if (themeIcon) themeIcon.classList.replace('bi-moon-stars', 'bi-sun');
+        } else {
+          body.classList.replace('light-theme', 'dark-theme');
+          localStorage.setItem('portfolio-theme', 'dark-theme');
+          if (themeIcon) themeIcon.classList.replace('bi-sun', 'bi-moon-stars');
+        }
       });
     }
   };
@@ -391,17 +402,10 @@
   };
 
   /**
-   * Initialize Theme Toggle Button
+   * Initialize Theme Toggle Button - Handled in index.html
    */
   const createThemeToggleButton = () => {
-    const existingBtn = document.querySelector('.theme-toggle-btn');
-    if (!existingBtn) {
-      const toggleBtn = document.createElement('button');
-      toggleBtn.className = 'theme-toggle-btn';
-      toggleBtn.innerHTML = '<i class="bi bi-moon"></i>';
-      toggleBtn.title = 'Toggle Dark Mode';
-      document.body.appendChild(toggleBtn);
-    }
+    // Button is already present in index.html
   };
 
   /**
