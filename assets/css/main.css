@@ -52,7 +52,7 @@ body.light-theme {
   --nav-dropdown-background-color: #ffffff;
   --nav-dropdown-color: #272829;
   --nav-dropdown-hover-color: #0563bb;
-  --overlay-color: rgba(255, 255, 255, 0.85);
+  --overlay-color: rgba(255, 255, 255, 0.4);
   --accent-text: #0563bb;
   --accent-gradient: linear-gradient(to right, #0563bb, #007bff);
 }
@@ -648,12 +648,15 @@ section,
   height: 100%;
   object-fit: cover;
   z-index: 1;
+  filter: none !important;
+  backdrop-filter: none !important;
 }
 
 .hero:before {
   content: "";
-  background: color-mix(in srgb, var(--background-color), transparent 85%);
-  backdrop-filter: none; /* Ensure no blur is inherited or applied here */
+  background: var(--overlay-color);
+  backdrop-filter: none !important;
+  filter: none !important;
   position: absolute;
   inset: 0;
   z-index: 2;
