@@ -12,43 +12,43 @@
 --------------------------------------------------------------*/
 /* Fonts */
 :root {
-  --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --heading-font: "Raleway",  sans-serif;
-  --nav-font: "Poppins",  sans-serif;
+  --default-font: "Inter",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --heading-font: "Outfit",  sans-serif;
+  --nav-font: "Outfit",  sans-serif;
 }
 
-/* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
+/* Global Colors */
 :root { 
-  --background-color: #ffffff; /* Background color for the entire website, including individual sections */
-  --default-color: #272829; /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #050d18; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #149ddd; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
-  --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
-  --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+  --background-color: #050505;
+  --default-color: #e0e0e0;
+  --heading-color: #ffffff;
+  --accent-color: #00f2fe;
+  --accent-secondary: #4facfe;
+  --surface-color: rgba(255, 255, 255, 0.05);
+  --contrast-color: #ffffff;
+  --glass-border: rgba(255, 255, 255, 0.1);
 }
 
-/* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
+/* Nav Menu Colors */
 :root {
-  --nav-color: #a8a9b4;  /* The default color of the main navmenu links */
-  --nav-hover-color: #ffffff; /* Applied to main navmenu links when they are hovered over or active */
-  --nav-mobile-background-color: #040b14; /* Used as the background color for mobile navigation menu */
-  --nav-dropdown-background-color: #040b14; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
-  --nav-dropdown-color: #a8a9b4; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #ffffff; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  --nav-color: #a8a9b4;
+  --nav-hover-color: #00f2fe;
+  --nav-mobile-background-color: #050505;
+  --nav-dropdown-background-color: #0a0a0a;
+  --nav-dropdown-color: #a8a9b4;
+  --nav-dropdown-hover-color: #00f2fe;
 }
-
-/* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
 
 .light-background {
-  --background-color: #f4fafd;
-  --surface-color: #ffffff;
+  --background-color: #0a0a0a;
+  --surface-color: rgba(255, 255, 255, 0.03);
 }
 
 .dark-background {
-  --background-color: #040b14;
+  --background-color: #050505;
   --default-color: #ffffff;
   --heading-color: #ffffff;
-  --surface-color: #151f2b;
+  --surface-color: rgba(255, 255, 255, 0.05);
   --contrast-color: #ffffff;
 }
 
@@ -64,6 +64,42 @@ body {
   color: var(--default-color);
   background-color: var(--background-color);
   font-family: var(--default-font);
+  line-height: 1.6;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--surface-color);
+  border-radius: 10px;
+  border: 2px solid var(--background-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color);
+}
+
+/* Glassmorphism Utility */
+.glass-card {
+  background: var(--surface-color);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 15px;
+  padding: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 242, 0.15);
+  border-color: var(--accent-color);
 }
 
 a {
@@ -89,6 +125,10 @@ h6 {
 
 /* PHP Email Form Messages
 ------------------------------*/
+.text-accent {
+  color: var(--accent-color) !important;
+}
+
 .php-email-form .error-message {
   display: none;
   background: #df1529;
@@ -144,7 +184,8 @@ h6 {
 --------------------------------------------------------------*/
 .header {
   color: var(--default-color);
-  background-color: var(--background-color);
+  background-color: rgba(5, 5, 5, 0.8);
+  backdrop-filter: blur(15px);
   position: fixed;
   top: 0;
   left: 0;
@@ -154,7 +195,7 @@ h6 {
   transition: all ease-in-out 0.3s;
   overflow-y: auto;
   z-index: 997;
-  border-right: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  border-right: 1px solid var(--glass-border);
 }
 
 .header .profile-img img {
@@ -309,12 +350,15 @@ h6 {
 .navmenu .active,
 .navmenu .active:focus {
   color: var(--nav-hover-color);
+  background: rgba(0, 242, 254, 0.05);
+  border-radius: 10px;
 }
 
 .navmenu a:hover .navicon,
 .navmenu .active .navicon,
 .navmenu .active:focus .navicon {
   color: var(--accent-color);
+  text-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
 }
 
 .navmenu .active .toggle-dropdown,
@@ -576,8 +620,12 @@ section,
 
 .hero h2 {
   margin: 0;
-  font-size: 64px;
-  font-weight: 700;
+  font-size: 72px;
+  font-weight: 800;
+  background: linear-gradient(to right, var(--accent-color), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 15px;
 }
 
 .hero p {
@@ -605,6 +653,36 @@ section,
 
 .hero .social-links a:hover {
   color: var(--accent-color);
+}
+
+.btn-hero {
+  display: inline-block;
+  padding: 12px 30px;
+  background: linear-gradient(45deg, var(--accent-color), var(--accent-secondary));
+  color: #050505;
+  font-weight: 600;
+  border-radius: 50px;
+  margin-right: 15px;
+  transition: 0.3s;
+  box-shadow: 0 5px 15px rgba(0, 242, 254, 0.3);
+}
+
+.btn-hero:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 242, 254, 0.5);
+  color: #050505;
+}
+
+.btn-hero.secondary {
+  background: transparent;
+  border: 2px solid var(--accent-color);
+  color: var(--accent-color);
+  box-shadow: none;
+}
+
+.btn-hero.secondary:hover {
+  background: var(--accent-color);
+  color: #050505;
 }
 
 @media (max-width: 768px) {
@@ -654,8 +732,18 @@ section,
 # Stats Section
 --------------------------------------------------------------*/
 .stats .stats-item {
+  background: var(--surface-color);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 15px;
   padding: 30px;
   width: 100%;
+  transition: 0.3s;
+}
+
+.stats .stats-item:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-color);
 }
 
 .stats .stats-item i {
@@ -683,41 +771,43 @@ section,
   font-size: 14px;
 }
 
-/*--------------------------------------------------------------
-# Skills Section
---------------------------------------------------------------*/
-.skills .progress {
-  height: 60px;
-  display: block;
-  background: none;
-  border-radius: 0;
+/* Skills Section */
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
 }
 
-.skills .progress .skill {
-  color: var(--heading-color);
-  padding: 0;
-  margin: 0 0 6px 0;
-  text-transform: uppercase;
-  display: block;
+.skill-chip {
+  background: var(--surface-color);
+  border: 1px solid var(--glass-border);
+  padding: 15px 20px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: 0.3s;
+}
+
+.skill-chip:hover {
+  border-color: var(--accent-color);
+  background: rgba(0, 242, 254, 0.05);
+  transform: scale(1.05);
+}
+
+.skill-chip i {
+  color: var(--accent-color);
+  font-size: 1.5rem;
+}
+
+.skill-chip span {
   font-weight: 600;
   font-family: var(--heading-font);
 }
 
-.skills .progress .skill .val {
-  float: right;
-  font-style: normal;
-}
-
-.skills .progress-bar-wrap {
-  background: color-mix(in srgb, var(--default-color), transparent 90%);
-  height: 10px;
-}
-
-.skills .progress-bar {
-  width: 1px;
-  height: 10px;
-  transition: 0.9s;
-  background-color: var(--accent-color);
+.skill-chip .val {
+  font-size: 0.8rem;
+  opacity: 0.6;
 }
 
 /*--------------------------------------------------------------
@@ -732,27 +822,39 @@ section,
 }
 
 .resume .resume-item {
-  padding: 0 0 20px 20px;
-  margin-top: -2px;
+  padding: 25px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   border-left: 2px solid var(--accent-color);
   position: relative;
+  background: var(--surface-color);
+  backdrop-filter: blur(10px);
+  border-radius: 0 15px 15px 0;
+  transition: 0.3s;
+}
+
+.resume .resume-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(5px);
 }
 
 .resume .resume-item h4 {
-  line-height: 18px;
-  font-size: 18px;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: color-mix(in srgb, var(--default-color), transparent 20%);
+  line-height: 1.2;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent-color);
   margin-bottom: 10px;
 }
 
 .resume .resume-item h5 {
-  font-size: 16px;
+  font-size: 14px;
   padding: 5px 15px;
   display: inline-block;
   font-weight: 600;
   margin-bottom: 10px;
+  background: rgba(0, 242, 254, 0.1);
+  color: var(--accent-color);
+  border-radius: 50px;
 }
 
 .resume .resume-item ul {
@@ -792,19 +894,25 @@ section,
 .portfolio .portfolio-filters li {
   cursor: pointer;
   display: inline-block;
-  padding: 0;
+  padding: 8px 20px;
   font-size: 14px;
-  font-weight: 400;
-  margin: 0 10px;
+  font-weight: 500;
+  margin: 0 5px;
   line-height: 1;
   text-transform: uppercase;
   margin-bottom: 10px;
   transition: all 0.3s ease-in-out;
+  border-radius: 50px;
+  background: var(--surface-color);
+  border: 1px solid var(--glass-border);
 }
 
 .portfolio .portfolio-filters li:hover,
 .portfolio .portfolio-filters li.filter-active {
-  color: var(--accent-color);
+  color: #050505;
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  box-shadow: 0 5px 15px rgba(0, 242, 254, 0.3);
 }
 
 .portfolio .portfolio-filters li:first-child {
@@ -838,11 +946,18 @@ section,
 .portfolio .portfolio-content .portfolio-info {
   opacity: 0;
   position: absolute;
-  inset: 0;
+  inset: 10px;
   z-index: 3;
   transition: all ease-in-out 0.3s;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 15px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
 .portfolio .portfolio-content .portfolio-info h4 {
@@ -1064,8 +1179,6 @@ section,
 # Contact Section
 --------------------------------------------------------------*/
 .contact .info-wrap {
-  background-color: var(--surface-color);
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
   padding: 30px;
 }
 
@@ -1082,7 +1195,7 @@ section,
 .contact .info-item i {
   font-size: 20px;
   color: var(--accent-color);
-  background: color-mix(in srgb, var(--accent-color), transparent 92%);
+  background: rgba(0, 242, 254, 0.1);
   width: 44px;
   height: 44px;
   display: flex;
@@ -1098,24 +1211,39 @@ section,
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 5px;
+  color: var(--heading-color);
 }
 
 .contact .info-item p {
   padding: 0;
   margin-bottom: 0;
   font-size: 14px;
+  color: var(--default-color);
+  opacity: 0.8;
 }
 
 .contact .info-item:hover i {
   background: var(--accent-color);
-  color: var(--contrast-color);
+  color: #050505;
 }
 
 .contact .php-email-form {
-  background-color: var(--surface-color);
-  height: 100%;
   padding: 30px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.glass-input {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid var(--glass-border) !important;
+  color: var(--default-color) !important;
+  border-radius: 10px !important;
+  padding: 12px 15px !important;
+  transition: 0.3s !important;
+}
+
+.glass-input:focus {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: var(--accent-color) !important;
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.1) !important;
 }
 
 @media (max-width: 575px) {
@@ -1297,8 +1425,57 @@ section,
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
+.faq .faq-container .faq-item {
+  background-color: var(--surface-color);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  position: relative;
+  transition: 0.3s;
+}
+
+.faq .faq-container .faq-item:hover {
+  border-color: var(--accent-color);
+}
+
+.faq .faq-container .faq-item h3 {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  margin: 0 30px 0 0;
+  transition: 0.3s;
+  cursor: pointer;
+  color: var(--heading-color);
+}
+
+.faq .faq-container .faq-item .faq-content {
+  display: none;
+  padding-top: 10px;
+}
+
+.faq .faq-container .faq-item .faq-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 16px;
+  line-height: 0;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.faq .faq-container .faq-item.faq-active h3 {
+  color: var(--accent-color);
+}
+
+.faq .faq-container .faq-item.faq-active .faq-content {
+  display: block;
+}
+
+.faq .faq-container .faq-item.faq-active .faq-toggle {
+  transform: rotate(90deg);
+  color: var(--accent-color);
 }
 
 /*--------------------------------------------------------------
@@ -1872,26 +2049,21 @@ footer a:hover {
   margin-bottom: 0;
 }
 
-/*--------------------------------------------------------------
-# FAQ Section
---------------------------------------------------------------*/
-.faq .faq-container {
-  margin-top: 15px;
-}
-
+/* FAQ Section */
 .faq .faq-container .faq-item {
-  position: relative;
-  padding: 20px;
+  background-color: var(--surface-color);
+  backdrop-filter: blur(15px);
+  border: 1px solid var(--glass-border);
+  padding: 25px;
   margin-bottom: 20px;
-  background: var(--surface-color);
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-  overflow: hidden;
-  transition: all 0.3s ease;
+  border-radius: 15px;
+  position: relative;
+  transition: 0.3s;
 }
 
 .faq .faq-container .faq-item:hover {
-  box-shadow: 0 8px 25px rgba(20, 157, 221, 0.15);
+  border-color: var(--accent-color);
+  box-shadow: 0 10px 30px rgba(0, 242, 254, 0.1);
 }
 
 .faq .faq-item h3 {
@@ -1911,21 +2083,19 @@ footer a:hover {
 .faq .faq-item .faq-content {
   display: none;
   padding: 15px 0 0 0;
+  color: var(--default-color);
+  opacity: 0.8;
 }
 
 .faq .faq-item .faq-toggle {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 25px;
+  right: 25px;
   font-size: 16px;
   line-height: 0;
   transition: 0.3s;
   cursor: pointer;
   color: var(--accent-color);
-}
-
-.faq .faq-item .faq-toggle:hover {
-  color: #0ea8d4;
 }
 
 .faq .faq-active h3 {
@@ -1934,22 +2104,10 @@ footer a:hover {
 
 .faq .faq-active .faq-content {
   display: block;
-  animation: fadeInDown 0.3s ease;
 }
 
 .faq .faq-active .faq-toggle {
   transform: rotate(90deg);
-}
-
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 /*--------------------------------------------------------------
