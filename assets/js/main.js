@@ -637,7 +637,7 @@
     initThemeToggle();
     initScrollProgressBar();
     initSmoothScroll();
-    initParallaxEffect();
+    // initParallaxEffect(); // Disabled to prevent background blur issues
     initCounterAnimation();
     initEnhancedSkillAnimation();
     initFadeInOnScroll();
