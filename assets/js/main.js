@@ -160,7 +160,7 @@
       const scrollPosition = window.scrollY;
       const heroImg = heroSection.querySelector('img');
       if (heroImg) {
-        heroImg.style.transform = `translateY(${scrollPosition * 0.5}px)`;
+        heroImg.style.transform = `translateY(${Math.round(scrollPosition * 0.5)}px)`;
       }
     });
   };
