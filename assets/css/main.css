@@ -776,6 +776,75 @@ body.light-theme .btn-hero.outline:hover {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
+/* Resume Download Dropdown */
+.hero-actions .dropdown-toggle::after {
+  margin-left: 0.5rem;
+}
+
+.resume-download-menu {
+  min-width: 280px;
+  padding: 8px;
+  background: var(--secondary-background);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+body.light-theme .resume-download-menu {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.resume-download-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  color: var(--default-color);
+  white-space: normal;
+}
+
+.resume-download-item i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: linear-gradient(45deg, var(--accent-color), var(--accent-secondary));
+  color: #050505;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.resume-download-item span {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.resume-download-item strong {
+  color: var(--heading-color);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.resume-download-item small {
+  color: color-mix(in srgb, var(--default-color), transparent 25%);
+  font-size: 0.8rem;
+}
+
+.resume-download-item:hover,
+.resume-download-item:focus {
+  background: color-mix(in srgb, var(--accent-color) 10%, var(--surface-color));
+  color: var(--heading-color);
+}
+
+.resume-download-item:active {
+  background: color-mix(in srgb, var(--accent-color) 15%, var(--surface-color));
+  color: var(--heading-color);
+}
+
 @media (max-width: 768px) {
   .hero h2 {
     font-size: 32px;
